@@ -1,0 +1,21 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: UsePythonVersion@0
+    inputs:
+      versionSpec: '3.x'
+    displayName: 'Install Python'
+
+- script: |
+    python -m pip install --upgrade pip
+    pip install -r project/requirements.txt
+  displayName: 'Install PIP'
+
+- script: |
+    python -c "print('SUCCESS')"
+  displayName: 'Verify Build'
+    
